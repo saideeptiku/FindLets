@@ -8,7 +8,7 @@ The output of program should print the identified tuples.
 E.g: array = [-5,-2,-5,0,5,5,2]
 
 Output should be -> [-5,0,5], [-2,0,2]
-Total -> two tuples
+Total -> 2 tuples
 
 
 Notes:
@@ -43,7 +43,9 @@ def print_help():
     --numbers: Generate N numbers between -9 to 9 and print unique triplets.
     --from_file: A file where each line has comma separated numbers.
                                 Overrides --number flag.
-    --gen_file: Only generates a file. Overrides all other flags.
+    --gen_file: Only generates a file. Overrides all other flags. Does not execute the finders.
+                Example: Following command will generate inputs.csv file with 10 rows and 30 cols
+                python3 --genfile inputs.csv 10 30 
 
     Example: 
 
@@ -52,11 +54,11 @@ def print_help():
     """)
 
 
-def gen_file(file_name: str):
+def gen_file(file_name: str, r: int, c: int):
     """generate inputs.csv with 3 lines
     and numbers ranging between -9 to 9
     """
-    np_array = np.random.randint(-9, 9, (3, 10))
+    np_array = np.random.randint(-9, 9, (r, c))
     # save the array as a text file
     np.savetxt(
         file_name,
@@ -91,7 +93,10 @@ def main():
 
     # if generate file; ignore everything else
     elif "--gen_file" in argv:
-        gen_file(argv[argv.index("--gen_file") + 1])
+        file_name = argv[argv.index("--gen_file") + 1]
+        rows = int(argv[argv.index("--gen_file") + 2])
+        cols = int(argv[argv.index("--gen_file") + 3])
+        gen_file(file_name, rows, cols)
 
     # evaluate tuples from a file provided
     elif "--from_file" in argv:
