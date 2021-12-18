@@ -49,7 +49,15 @@ def print_help():
 
     Example: 
 
-    python3 main.py --better numbers 30
+    The following line generates 30 rows of fixed length 10 and then executes better finder on it
+    python3 main.py --better --numbers 30
+
+    The following line creates a csv file with 10 rows and 20 cols, and places inside insputs.csv
+    python3 main.py --gen_file inputs.csv 10 20
+
+    The following line executes better on each line within inputs.csv
+    python3 main.py --better --from_file inputs.csv
+
 
     """)
 
@@ -66,6 +74,8 @@ def gen_file(file_name: str, r: int, c: int):
         delimiter=",",
         fmt="%d",
     )
+
+    print("Generated file", file_name)
 
 
 def from_file(file_name: str, finder: Callable):

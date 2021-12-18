@@ -41,11 +41,21 @@ KWARGS:
 --numbers: Generate N numbers between -9 to 9 and print unique triplets.
 --from_file: A file where each line has comma separated numbers.
                             Overrides --number flag.
---gen_file: Only generates a file. Overrides all other flags.
+--gen_file: Only generates a file. Overrides all other flags. Does not execute the finders.
+            Example: Following command will generate inputs.csv file with 10 rows and 30 cols
+            python3 --genfile inputs.csv 10 30 
 
 Example: 
 
-python3 main.py --better numbers 30
+The following line generates 30 rows of fixed length 10 and then executes better finder on it
+python3 main.py --better --numbers 30
+
+The following line creates a csv file with 10 rows and 20 cols, and places inside insputs.csv
+python3 main.py --gen_file inputs.csv 10 20
+
+The following line executes better on each line within inputs.csv
+python3 main.py --better --from_file inputs.csv
+
 ```
 
 ### Testing
