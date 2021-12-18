@@ -106,7 +106,6 @@ if __name__ == "__main__":
     plt.plot(naive_times, label="Naive O(n^3)")
     plt.plot(better_times, label="Better O(n^2)")
     plt.legend()
-    # FIXME: xticks should be number of samples
     plt.xticks(
         range(0, 3),
         ["10", "100", "1,000"],
