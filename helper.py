@@ -1,5 +1,9 @@
-import numpy as np
+"""
+Functions for generating and printing information
+or any other functions that may be generally useful
+"""
 
+import numpy as np
 
 def gen_test_numbers(
         len_lim: int = 10,

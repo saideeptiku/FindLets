@@ -17,7 +17,6 @@ Notes:
               tqdm == 4.62
 """
 from sys import argv
-# from test import test_triplet_finder
 # importing the functions that actually do the work
 from find_triplets import (
     better_find,

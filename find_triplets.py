@@ -5,17 +5,13 @@ functions to find 3 triplets that sum to zero
 Notes:
 1. Traded in constant time improvement for readability and 
 my own implementation speed (time taken to implement code)
-
-2. functionally space complexity of both solutions is same O(n)
-   both naive_find and better_find maintain a set of length O(n),
-   where n is the unique number of elements in numbers list 
 """
 
 def better_find(numbers: list):
     """A better solution that trades inner most loop for dict
 
     Time Complexity: O(n^2) # 2 nested loops
-    See note on space complexity under file summary
+    Space Complexity: O(n)  # space required grows linearly with input
 
     Parameters
     ----------
@@ -79,7 +75,7 @@ def naive_find(numbers: list):
     This approach looks at all possible compbination of triplets
 
     Time Complexity: O(n^3) # 3 nested loops
-    See note on space complexity under file summary
+    Space Complexity: O(n)  # space required grows linearly with input
 
     Parameters
     ----------
