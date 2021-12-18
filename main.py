@@ -84,35 +84,50 @@ def main():
     # An overly simple arg parser
     if "--help" in argv:
         print_help()
+
+    # if generate file; ignore everything else
     elif "--gen_file" in argv:
         gen_file(argv[argv.index("--gen_file") + 1])
+
+    # evaluate tuples from a file provided
     elif "--from_file" in argv:
+        # check if naive or better was asked for
+        # get item after --from_file
+        file_name = argv[argv.index("--from_file") + 1]
         if "--naive" in argv:
             from_file(
-                argv[argv.index("--from_file") + 1],
-                naive_find,
+                file_name,
+                naive_find, # function to call
             )
         elif "--better" in argv:
             from_file(
-                argv[argv.index("--from_file") + 1],
+                file_name,
                 better_find,
             )
         else:
             print_help()
             exit("Finder not provided! See help above.")
+
+    # generate and test numbers at the same time
     elif "--numbers" in argv:
+        # extract numbers wanted
         num_len = int(argv[argv.index("--numbers") + 1])
+        # gen numbers
         numbers = gen_test_numbers(num_len, default_range=(-9, 9))
+        # call and exec naive or better
         if "--naive" in argv:
             print_results(numbers, naive_find(numbers))
         elif "--better" in argv:
-            print_results(numbers, naive_find(numbers))
+            print_results(numbers, better_find(numbers))
         else:
             print_help()
-            exit("Finder not provided! See help above.")        
+            exit("Finder not provided! See help above.")
+    
+    # nothing matched? print help and exit with msg
     else:
         print_help()
         exit("Invalid input! See help above.")
+
 
 if __name__ == "__main__":
     main()
