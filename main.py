@@ -47,6 +47,8 @@ def print_help():
 
     Example: 
 
+    python3 main.py --better numbers 30
+
     """)
 
 
@@ -72,8 +74,10 @@ def from_file(file_name: str, finder: Callable):
     file_name : str
         csv file with integers
     """
+    # read file
     np_array = np.genfromtxt(file_name, delimiter=",").astype(int)
 
+    # read each line from file and call finder on line
     for line in np_array:
         numbers = list(line)
         triplets = finder(numbers)

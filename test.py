@@ -89,13 +89,13 @@ def timed_test(finder: Callable):
 
 
 if __name__ == "__main__":
-    print("1. Test printing function")
-    dummy_print_test()
-    print("## 1. END ##\n")
+    # print("1. Test printing function")
+    # dummy_print_test()
+    # print("## 1. END ##\n")
 
-    print("2. Test functionality.")
-    test_triplet_finders()
-    print("## 2. END ##\n")
+    # print("2. Test functionality.")
+    # test_triplet_finders()
+    # print("## 2. END ##\n")
 
     print("3. Make Time Plot. See times.png file.")
     naive_times = timed_test(naive_find)
@@ -106,6 +106,7 @@ if __name__ == "__main__":
     plt.plot(naive_times, label="Naive O(n^3)")
     plt.plot(better_times, label="Better O(n^2)")
     plt.legend()
+    # FIXME: xticks should be number of samples
     plt.xlabel("Iters")
     plt.ylabel("Time (seconds)")
     plt.title("Execution Times")
