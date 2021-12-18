@@ -33,9 +33,11 @@ def test_triplet_finders():
             # gen some list of numbers
             numbers = gen_test_numbers(len_nums)
 
+            # exec both methods
             naive_set = naive_find(numbers)
             better_set = better_find(numbers)
 
+            # compare results
             if naive_set != better_set:
                 print("ERROR!")
                 print(numbers)

@@ -15,6 +15,7 @@ Notes:
 - Tested with python3 == 3.8 (>= 3.6)
               numpy == 1.21.2
               tqdm == 4.62
+              matplotlib == 3.5.1
 """
 from sys import argv
 # importing the functions that actually do the work
@@ -23,10 +24,29 @@ from find_triplets import (
     naive_find,
 )
 
+def print_help():
+    print("""
+    python3 main.py [--naive|--better] --numbers=50 --file=inputs.csv --gen_file
+
+    ARGS:
+    ----
+    --naive: A naive approach with time complexity O(n^3).
+    --better: Improved approach with time complexity O(n^2).
+    --gen_file: Only generates inputs.csv file. Overrides all other flags.
+
+    KWARGS:
+    -------
+    --numbers (default=50): Generate 50 numbers between -99 to 99 and print unique triplets.
+    --file (default=input.csv): A file where each line has comma separated numbers.
+                                Overrides --number flag.
+
+    Example: 
+
+    """)
 
 
 def main():
-    pass
+    print_help()
 
 
 if __name__ == "__main__":

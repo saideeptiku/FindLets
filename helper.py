@@ -8,7 +8,7 @@ import numpy as np
 def gen_test_numbers(
         len_lim: int = 10,
         dummy: bool = False,
-        default_range: tuple = (-99, 99),
+        default_range: tuple = (-9999, 9999),
 ):
     """Generate a list of numbers with length N
 
