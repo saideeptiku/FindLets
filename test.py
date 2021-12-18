@@ -107,9 +107,12 @@ if __name__ == "__main__":
     plt.plot(better_times, label="Better O(n^2)")
     plt.legend()
     # FIXME: xticks should be number of samples
-    plt.xlabel("Iters")
+    plt.xticks(
+        range(0, 3),
+        ["10", "100", "1,000"],
+    )
+    plt.xlabel("Number of Samples")
     plt.ylabel("Time (seconds)")
     plt.title("Execution Times")
     plt.savefig("times.png")
-    # TODO: make the plot; creates another dependency :/
     print("## 3. END ##\n")
