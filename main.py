@@ -49,7 +49,7 @@ def print_help():
 
     Example: 
 
-    The following line generates 30 rows of fixed length 10 and then executes better finder on it
+    The following line generates 30 elements and then executes better finder on it
     python3 main.py --better --numbers 30
 
     The following line creates a csv file with 10 rows and 20 cols, and places inside insputs.csv
