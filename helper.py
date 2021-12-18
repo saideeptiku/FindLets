@@ -8,7 +8,7 @@ import numpy as np
 def gen_test_numbers(
         len_lim: int = 10,
         dummy: bool = False,
-        default_range: tuple = (-9999, 9999),
+        default_range: tuple = (-99, 99),
 ):
     """Generate a list of numbers with length N
 
@@ -19,7 +19,8 @@ def gen_test_numbers(
     dummy : bool
         Return the list given in description example
     default_range : tuple
-        Tuple describing the range of numbers to consider
+        Tuple describing the range of numbers to consider.
+        Increasing this will increase execution times for functions.
 
     Returns
     -------

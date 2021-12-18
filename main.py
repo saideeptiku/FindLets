@@ -23,41 +23,96 @@ from find_triplets import (
     better_find,
     naive_find,
 )
+from helper import gen_test_numbers, print_results
+import numpy as np
+from typing import Callable
+
 
 def print_help():
     print("""
-    python3 main.py [--naive|--better] --numbers=50 --file=inputs.csv --gen_file
+    python3 main.py [--naive|--better] --numbers 50 --from_file inputs.csv --gen_file inputs.csv
 
     ARGS:
     ----
-    --naive: A naive approach with time complexity O(n^3).
-    --better: Improved approach with time complexity O(n^2).
-    --gen_file: Only generates inputs.csv file. Overrides all other flags.
+    --naive: A naive finder approach with time complexity O(n^3).
+    --better: Improved finder approach with time complexity O(n^2).
+    --help: prints this msg.
 
     KWARGS:
     -------
-    --numbers (default=50): Generate 50 numbers between -99 to 99 and print unique triplets.
-    --file (default=input.csv): A file where each line has comma separated numbers.
+    --numbers: Generate N numbers between -9 to 9 and print unique triplets.
+    --from_file: A file where each line has comma separated numbers.
                                 Overrides --number flag.
+    --gen_file: Only generates a file. Overrides all other flags.
 
     Example: 
 
     """)
 
 
-def main():
-    print_help()
+def gen_file(file_name: str):
+    """generate inputs.csv with 3 lines
+    and numbers ranging between -9 to 9
+    """
+    np_array = np.random.randint(-9, 9, (3, 10))
+    # save the array as a text file
+    np.savetxt(
+        file_name,
+        np_array,
+        delimiter=",",
+        fmt="%d",
+    )
 
+
+def from_file(file_name: str, finder: Callable):
+    """read csv file as list of list
+
+    Parameters
+    ----------
+    file_name : str
+        csv file with integers
+    """
+    np_array = np.genfromtxt(file_name, delimiter=",").astype(int)
+
+    for line in np_array:
+        numbers = list(line)
+        triplets = finder(numbers)
+        print_results(numbers, triplets)
+
+
+def main():
+    # An overly simple arg parser
+    if "--help" in argv:
+        print_help()
+    elif "--gen_file" in argv:
+        gen_file(argv[argv.index("--gen_file") + 1])
+    elif "--from_file" in argv:
+        if "--naive" in argv:
+            from_file(
+                argv[argv.index("--from_file") + 1],
+                naive_find,
+            )
+        elif "--better" in argv:
+            from_file(
+                argv[argv.index("--from_file") + 1],
+                better_find,
+            )
+        else:
+            print_help()
+            exit("Finder not provided! See help above.")
+    elif "--numbers" in argv:
+        num_len = int(argv[argv.index("--numbers") + 1])
+        numbers = gen_test_numbers(num_len, default_range=(-9, 9))
+        if "--naive" in argv:
+            print_results(numbers, naive_find(numbers))
+        elif "--better" in argv:
+            print_results(numbers, naive_find(numbers))
+        else:
+            print_help()
+            exit("Finder not provided! See help above.")        
+    else:
+        print_help()
+        exit("Invalid input! See help above.")
 
 if __name__ == "__main__":
-    # if len(argv) == 1:
-    #     print("Performing dummy print test.\n")
-    #     dummy_print_test()
-    #     exit()
-
-    # test_naive_better()    
-
-
-    # TODO: if custom input is less than three then abort
-    
     main()
