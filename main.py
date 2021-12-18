@@ -2,7 +2,7 @@
 Problem Description:
 
 Identify tuple of 3 elements in an array of integers (positive, negative and zero)
-that have sum value of 0. The detected tuples shouldn’t have duplicates. 
+that have sum value of 0. The detected tuples should not have duplicates. 
 The output of program should print the identified tuples.
 
 E.g: array = [-5,-2,-5,0,5,5,2]
@@ -14,7 +14,6 @@ from sys import argv
 import numpy as np
 # importing the functions that actually do the work
 from find_triplets import (
-    best_find,
     better_find,
     naive_find,
 )
